@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { HttpDataService } from './services/http.data.service';
+import { DataService } from './services/data.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -17,7 +19,8 @@ export class SharedModule {
 
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: SharedModule
+      ngModule: SharedModule,
+      providers: [HttpDataService, DataService]
     };
   }
 
