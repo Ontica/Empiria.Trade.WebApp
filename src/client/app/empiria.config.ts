@@ -14,13 +14,6 @@ const TESTS_API_KEY = 'Tr4d3fGZUTzp7pRdUHWTQVcB6TWpLaATAwDPeYzX9yV8eYTNxCe5rsL9d
 
 const DATAOPERATIONLIST: DataOperationDef[] = [
   {
-    'uid': 'getPDMProductsList',
-    'url': 'v1/product-data/products?searchFor={0}',
-    'method': 'GET',
-    'typeName': 'Empiria.Trade.PDM.Product',
-    'typeOperation': 'getList'
-  },
-  {
     'uid': 'getPDMBrandsList',
     'url': 'v1/product-data/brands?searchFor={0}',
     'method': 'GET',
