@@ -35,7 +35,8 @@
       <tr *ngFor="let product of products">
         <td>
          <ins> {{product.name}}</ins><br>
-          <b>Código: </b>{{product.partNumber}}<br>
+          <b>Código: </b><a (click)="onGoogleSearchProduct(product.manufacturer.name + ' ' +product.partNumber)">
+                            {{product.partNumber}}</a><br>
           <b>Fabricante:</b>{{product.manufacturer.name}}<br> 
           <b>Marca:</b> {{product.brand.name}}<br>
         </td>

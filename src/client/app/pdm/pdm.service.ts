@@ -26,7 +26,7 @@ public getBrands(uid: string, brand: string): Promise<BrandData[]> {
     let dataOperation = DataOperation.parse(uid, brand);
 
     return this.dataService.getList<BrandData[]>(dataOperation);
-  }
+  } 
 
   // endregion Public methods
 

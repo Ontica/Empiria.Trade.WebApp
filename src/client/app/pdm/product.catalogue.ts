@@ -28,6 +28,11 @@ export class ProductCatalogue {
     this.getProducts(this.searchValue);
   }
 
+
+  public onGoogleSearchProduct(productPartNumber: string): void {
+    window.open('https://www.google.com/search?q=' + productPartNumber);
+  }
+
   // endregion Public methods
 
   // region Private methods
