@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PDMService } from './pdm.service';
+
+import { ModalWindow } from '../shared/windows/modal-window.component';
 
 import { ProductData } from '../shared/interfaces/index';
 
@@ -9,14 +11,18 @@ import 'rxjs/Rx';
   moduleId: module.id,
   selector: 'product-catalog',
   templateUrl: 'product.catalogue.html',
-  providers: [PDMService]
+  providers: [PDMService, ModalWindow]
 })
 
 export class ProductCatalogue {
 
   products: ProductData[] = [];
+
   public submitted = false;
   public searchValue: string = '';
+  public productEquivalent: ProductData;
+
+  @ViewChild(ModalWindow) public modalWindow: ModalWindow;
 
   constructor(private pdmService: PDMService) {
 
@@ -31,6 +37,11 @@ export class ProductCatalogue {
 
   public onGoogleSearchProduct(productPartNumber: string): void {
     window.open('https://www.google.com/search?q=' + productPartNumber);
+  }
+
+  public onShowEquivalents(product: ProductData): void {
+    this.productEquivalent = product;
+    this.modalWindow.show();
   }
 
   // endregion Public methods

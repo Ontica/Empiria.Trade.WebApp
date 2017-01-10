@@ -38,7 +38,7 @@
           <b>Código: </b><a (click)="onGoogleSearchProduct(product.manufacturer.name + ' ' +product.partNumber)">
                             {{product.partNumber}}</a><br>
           <b>Fabricante:</b>{{product.manufacturer.name}}<br> 
-          <b>Marca:</b> {{product.brand.name}}<br>
+          <b>Marca:</b> {{product.brand.name}}<br>         
         </td>
         <td>
           <b>Tipo:</b> {{product.category.name}}<br>
@@ -55,8 +55,8 @@
           Notas: {{product.notes}} <br>
           <br>
         </td>
-        <td>
-         
+        <td><a (click)="onShowEquivalents(product)">
+          <b>Ver Equivalentes</b><br></a>
         </td>
       </tr>
       <tr *ngIf="products.length !== 0">
@@ -66,3 +66,6 @@
   </table>
 
 </div>
+<modal-window>
+  <equivalent-editor [product]="productEquivalent"></equivalent-editor>  
+</modal-window>

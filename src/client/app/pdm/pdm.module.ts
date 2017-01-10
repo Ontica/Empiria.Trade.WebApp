@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductCatalogue } from './product.catalogue';
+
 import { PDMRoutingModule } from './pdm.routes';
+
+import { ProductCatalogue } from './product.catalogue';
+import { EquivalentEditor } from './equivalent.editor';
 
 import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
   imports: [CommonModule, PDMRoutingModule, SharedModule],
-  declarations: [ProductCatalogue],
+  declarations: [ProductCatalogue, EquivalentEditor],
   exports: [ProductCatalogue],
 
 })

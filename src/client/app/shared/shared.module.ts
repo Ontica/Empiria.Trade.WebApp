@@ -6,14 +6,15 @@ import { RouterModule } from '@angular/router';
 import { HttpDataService } from './services/http.data.service';
 import { DataService } from './services/data.service';
 
+import { ModalWindow } from './windows/modal-window.component';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [],
-  exports: [CommonModule, FormsModule, RouterModule]
+  declarations: [ModalWindow],
+  exports: [CommonModule, FormsModule, RouterModule, ModalWindow]
 })
 export class SharedModule {
 

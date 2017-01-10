@@ -16,22 +16,28 @@ export class PDMService {
 
   // region Public methods
 
-public getProducts(uid: string, product: string): Promise<ProductData[]> {
+  public getProducts(uid: string, product: string): Promise<ProductData[]> {
     let dataOperation = DataOperation.parse(uid, product);
 
     return this.dataService.getList<ProductData[]>(dataOperation);
   }
 
-public getBrands(uid: string, brand: string): Promise<BrandData[]> {
+  public getBrands(uid: string, brand: string): Promise<BrandData[]> {
     let dataOperation = DataOperation.parse(uid, brand);
 
     return this.dataService.getList<BrandData[]>(dataOperation);
-  } 
+  }
+
+  public getEquivalents(uid: string, product: string): Promise<ProductData[]> {
+    let dataOperation = DataOperation.parse(uid, product);
+
+    return this.dataService.getList<ProductData[]>(dataOperation);
+  }
 
   // endregion Public methods
 
   // region Private methods
 
-// endregion Private methods
+  // endregion Private methods
 
 }
