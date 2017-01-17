@@ -132,6 +132,41 @@ const DATAOPERATIONLIST: DataOperationDef[] = [
     'method': 'GET',
     'typeName': 'Empiria.Trade.PDM.Product',
     'typeOperation': 'parse'
+  },
+  {
+    'uid': 'getYears',
+    'url': 'v1/automotive/years',
+    'method': 'GET',
+    'typeName': '',
+    'typeOperation': 'getList'
+  },
+  {
+    'uid': 'getMakes',
+    'url': 'v1/automotive/years/{0}/makes',
+    'method': 'GET',
+    'typeName': 'Empiria.Automotive.Make',
+    'typeOperation': 'getList'
+  },
+  {
+    'uid': 'getModels',
+    'url': 'v1/automotive/years/{0}/makes/{1}/models',
+    'method': 'GET',
+    'typeName': 'Empiria.Automotive.Model',
+    'typeOperation': 'getList'
+  },
+  {
+    'uid': 'getEngines',
+    'url': 'v1/automotive/years/{0}/makes/{1}/models/{2}/engines',
+    'method': 'GET',
+    'typeName': 'Empiria.Automotive.EngineType',
+    'typeOperation': 'getList'
+  },
+  {
+    'uid': 'getVehicleModel',
+    'url': 'v1/automotive/vehicle-models/{0}',
+    'method': 'GET',
+    'typeName': 'Empiria.Automotive.VehicleModel',
+    'typeOperation': 'parse'
   }
 
 ];   // END

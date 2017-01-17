@@ -3,7 +3,7 @@ import { PDMService } from './pdm.service';
 
 import { ModalWindow } from '../shared/windows/modal-window.component';
 
-import { ProductData } from '../shared/interfaces/index';
+import { ProductData, VehicleModel } from '../shared/interfaces/index';
 
 import 'rxjs/Rx';
 
@@ -21,6 +21,8 @@ export class ProductCatalogue {
   public submitted = false;
   public searchValue: string = '';
   public productEquivalent: ProductData;
+  public vehicleModel: VehicleModel;
+  public componentToShow: string;
 
   @ViewChild(ModalWindow) public modalWindow: ModalWindow;
 
@@ -41,7 +43,18 @@ export class ProductCatalogue {
 
   public onShowEquivalents(product: ProductData): void {
     this.productEquivalent = product;
+    this.componentToShow = 'equivalent-editor';
     this.modalWindow.show();
+  }
+
+  public onSearchByVehicle(): void {
+    this.componentToShow = 'application-picker';
+    this.modalWindow.show();
+  }
+
+  public getVehicleModel(vehicleModel: VehicleModel): void {
+    this.vehicleModel = vehicleModel;
+    this.modalWindow.close();
   }
 
   // endregion Public methods
@@ -53,7 +66,6 @@ export class ProductCatalogue {
       .then(x => {
         this.products = x;
         this.submitted = true;
-        // this.loadResults(x);    
       }).catch(err => {
         console.log(err);
       });

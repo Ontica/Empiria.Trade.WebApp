@@ -1,0 +1,39 @@
+<h4>Selecciona un vehículo</h4>
+<form>
+  <div class="row">
+    <hr>
+  </div>
+  <div class="row">
+    <div class="small-2 columns">
+      <select name="cboYear" #cboYear (change)="onChangeYearCbo(cboYear.value)"  [ngModel]="year">
+          <option value="-1">Año</option>          
+           <option *ngFor="let year of yearList" [value]="year">{{year}}</option>            
+          </select>
+    </div>
+    <div class="small-2 columns">
+      <select name="cboMake" #cboMake (change)="onChangeMakeCbo(cboMake.value)">
+            <option value="-1">Marca</option>            
+            <option *ngFor="let make of makeList" [value]="make">{{make}}</option> -->
+           
+          </select>
+    </div>
+    <div class="small-3 columns">
+      <select name="cboModel" #cboModel (change)="onChangeModelCbo(cboModel.value)">
+            <option value="-1">Modelo</option>            
+           <option *ngFor="let model of modelList" [value]="model">{{model}}</option>
+      </select>
+    </div>
+    <div class="small-2 columns">
+      <select name="cboEngine" #cboEngine (change)="onChangeEngineCbo(cboEngine.value)">
+            <option value="-1">Motor</option>
+           <option *ngFor="let engine of engineList" [value]="engine.id">{{engine.asText}}</option> 
+      </select>
+    </div>
+    <div class="small-2 columns">
+      <a class="medium info button" (click)="addAplication()">Seleccionar</a>
+    </div>
+  </div>
+  <!--
+
+  -->
+</form>
