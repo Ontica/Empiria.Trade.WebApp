@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 
 const TEST_SESSION_TOKEN = '2a3b02e6-9d59-41de-8698-6482ec4e9ce2-' +
-                           '3a951dab66a2360fa08564bf39b24b7d7e6a92e2ba86813cb24afc84cde2e572';
+  '3a951dab66a2360fa08564bf39b24b7d7e6a92e2ba86813cb24afc84cde2e572';
 
 
 @Injectable()
@@ -29,6 +29,7 @@ export class HttpDataService {
       .then(response => response.json().data as T)
       .catch(this.handleError);
   }
+
   // endregion Public methods
 
   // region Private methods
@@ -37,6 +38,6 @@ export class HttpDataService {
     return Promise.reject(error.json().data || error.message);
   }
 
-// endregion Private methods
+  // endregion Private methods
 
 }

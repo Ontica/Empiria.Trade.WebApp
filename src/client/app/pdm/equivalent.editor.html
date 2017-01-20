@@ -1,39 +1,49 @@
-<h4>Equivalentes</h4>
-<div *ngIf="product">
-  <h5>{{product.partNumber}}</h5>
-  <table style="font-family:arial; color:#0000FF; font-size:11px;">
-    <thead>
-      <tr>
-        <th width="20%">Clave equivalente</th>
-        <th width="20%">Marca</th>  
-        <th width="20%">Especificación</th>    
-        <th width="20%">Presentación</th>        
-        <th width="20%">Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf="equivalents.length === 0">
-        <td colspan="5">No se encontraron productos equivalentes.</td>
-      </tr>
-      <tr *ngFor="let equivalent of equivalents">
-        <td>{{equivalent.partNumber}}</td>
-        <td>{{equivalent.brand.name}}</td>  
-        <td>{{equivalent.description}} </td>      
-        <td>{{equivalent.presentationUnit.name}} / {{equivalent.contentsQty}} piezas</td>        
-        <td><a> Eliminar</a> </td>
-      </tr>
-      <tr>
-        <td colspan="3"><strong>Productos encontrados:</strong>{{equivalents.length}}</td>
-        <td></td>
-        <td><a (click)="showAddEquivalentSearch()">Agregar </a></td>
-      </tr>
+<h5>Listado de Equivalentes</h5>
+<div class="row">
+  <div class="row">
+    <div class="samll-12 columns">
+      <span>Código:{{product.partNumber}} {{product.name}} 
+         Fabricante:{{product.manufacturer.name}} Marca:{{product.brand.name}}
+       </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="samll-12 columns">
+      <span>
+           Grupo: {{product.category.name}} Subgrupo: {{product.subcategory.name}}
+           Tipo:{{product.productTerm.name}}
+        </span>
+    </div>
+  </div>
+  <div *ngIf="product">
+    <table style="font-family:arial; color:#0000FF; font-size:11px;">
+<thead>
+  <tr>
+    <th width="20%">Clave equivalente</th>
+    <th width="20%">Marca</th>
+    <th width="20%">Especificación</th>
+    <th width="20%">Presentación</th>
+    <th width="20%">Estado</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngIf="equivalents.length === 0">
+    <td colspan="5">No se encontraron productos equivalentes.</td>
+  </tr>
+  <tr *ngFor="let equivalent of equivalents">
+    <td>{{equivalent.partNumber}}</td>
+    <td>{{equivalent.brand.name}}</td>
+    <td>{{equivalent.description}} </td>
+    <td> {{equivalent.presentationUnit.name}} Contenido:{{equivalent.contentQty}} {{equivalent.contentUnit.name}}
+      <td><a>Editar </a><a>Eliminar </a> </td>
+  </tr>
+  <tr>
+    <td colspan="3"><strong>Productos encontrados:</strong>{{equivalents.length}}</td>
+    <td></td>
+    <td><a (click)="showAddEquivalentSearch()">Agregar </a></td>
+  </tr>
 
-    </tbody>
-  </table>
-</div>
+</tbody>
+</table>
 
-<!--
-  <div class="equivalentsGrid">
-  
 </div>
--->

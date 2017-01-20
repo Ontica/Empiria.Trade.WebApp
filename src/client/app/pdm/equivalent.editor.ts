@@ -14,15 +14,25 @@ import 'rxjs/Rx';
 
 export class EquivalentEditor implements OnInit {
 
-  equivalents: ProductData[] = [];
-  @Input() product: ProductData;
+  public equivalents: ProductData[] = [];
+
+  private _product: ProductData;
+
+  get product(): ProductData {
+    return this._product;
+  }
+
+  @Input() set product(product: ProductData) {
+    this._product = product;
+    this.loadEquivalents();
+  }
 
   constructor(private pdmService: PDMService) {
 
   }
 
   ngOnInit() {
-    this.getEquivalents();
+    this.loadEquivalents();
   }
 
   // region Public methods
@@ -31,8 +41,8 @@ export class EquivalentEditor implements OnInit {
 
   // region Private methods
 
-  private getEquivalents(): void {
-    this.pdmService.getProducts('getPDMProductsList', 'ffasfas3ee')
+  private loadEquivalents(): void {
+    this.pdmService.getEquivalents(this.product.id)
       .then(x => {
         this.equivalents = x;
       }).catch(err => {

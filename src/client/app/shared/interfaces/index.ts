@@ -7,4 +7,5 @@ export * from './product';
 export * from './productTerm';
 export * from './subcategory';
 export * from './pairValue';
+export * from './trader';
 export * from './vehicleModel';

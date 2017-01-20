@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { DataOperation } from '../shared/services/data.operation';
 import { DataService } from '../shared/services/data.service';
 
-import { ProductData, PairValue, VehicleModel } from '../shared/interfaces/index';
+import {
+  BrandData, CategoryData, ProductData, PairValue, ProductTermData,
+  SubcategoryData, TraderData, VehicleModel
+} from '../shared/interfaces/index';
 
 import 'rxjs/Rx';
 
@@ -52,10 +55,40 @@ export class PDMService {
     return this.dataService.getList<VehicleModel>(dataOperation);
   }
 
-  public getEquivalents(uid: string, product: string): Promise<ProductData[]> {
-    let dataOperation = DataOperation.parse(uid, product);
+  public getEquivalents(productId: number): Promise<ProductData[]> {
+    let dataOperation = DataOperation.parse('getEquivalents', productId);
 
     return this.dataService.getList<ProductData[]>(dataOperation);
+  }
+
+  public getProductCategories(): Promise<CategoryData[]> {
+    let dataOperation = DataOperation.parse('getProductCategories');
+
+    return this.dataService.getList<CategoryData[]>(dataOperation);
+  }
+
+  public getProductSubcategories(categoryId: number): Promise<SubcategoryData[]> {
+    let dataOperation = DataOperation.parse('getProductSubcategories', categoryId);
+
+    return this.dataService.getList<SubcategoryData[]>(dataOperation);
+  }
+
+  public getProductTerms(subCategoryId: number): Promise<ProductTermData[]> {
+    let dataOperation = DataOperation.parse('getProductTerms', subCategoryId);
+
+    return this.dataService.getList<ProductTermData[]>(dataOperation);
+  }
+
+  public getBrands(): Promise<BrandData[]> {
+    let dataOperation = DataOperation.parse('getBrands');
+
+    return this.dataService.getList<BrandData[]>(dataOperation);
+  }
+
+  public getTraders(): Promise<TraderData[]> {
+    let dataOperation = DataOperation.parse('getTraders');
+
+    return this.dataService.getList<TraderData[]>(dataOperation);
   }
 
   // endregion Public methods

@@ -1,8 +1,46 @@
 <form>
   <h3>Catalogación de productos</h3>
+  
+  <div class="row">
+    <div class="small-4 columns">
+      <select class="small" name="cboCategory" #cboCategory (change)="onChangeCategory(cboCategory.value)">
+       <option  DISABLED value="-1">seleccione una categeria</option>
+       <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+     </select>
+    </div>
+    <div class="small-4 columns">
+      <select class="small" name="cboSubcategory" #cboSubcategory (change)="onChangeSubCategory(cboSubcategory.value)">
+       <option  DISABLED value="-1">seleccione una subcategeria</option>
+       <option *ngFor="let subcategory of subcategoryList" [value]="subcategory.id">
+              {{subcategory.name}}</option>
+     </select>
+    </div>
+    <div class="small-4 columns">
+      <select class="small" name="cboPartTerm">
+       <option  DISABLED value="-1">seleccione un Tipo</option>
+       <option *ngFor="let productTerm of productTermList" [value] ="productTerm.id">{{productTerm.name}}</option>
+     </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-4 columns">
+      <select class="small" name="cboBrand">
+        <option  DISABLED value="-1">seleccione una Marca</option>
+        <option *ngFor="let brand of brandList" [value]="brand.id">{{brand.name}}</option>
+      </select>
+    </div>
+    <div class="small-4 columns">
+      <select class="small" namce="cboTrader">
+        <option DISABLED value="-1">seleccione un Proovedor</option>
+        <option *ngFor="let trader of traderList" [value]="trader.id">{{trader.fullName}}</option>
+      </select>
+    </div>
+    <div class="small-4 columns">
+    </div>
+  </div>
   <div class="row">
     <div class="small-8 medium-centered columns">
-      <div class="row">      
+      <div class="row">
         <div class="small-6 columns">
           <input type="text" placeholder="Buscador productos" (input)="searchValue=$event.target.value" (keydown.enter)="search()">
         </div>
@@ -13,7 +51,7 @@
         </div>
         <div class="small-4 columns">
           <div *ngIf="vehicleModel">
-             {{vehicleModel.asText}} 
+            {{vehicleModel.asText}}
           </div>
           <a href="#" (click)="onSearchByVehicle()">Seleccionar un vehículo</a>
         </div>
@@ -23,59 +61,60 @@
 </form>
 <div class="row">
   <table style="font-family:arial; color:#0000FF; font-size:11px;">
-    <thead>
-      <tr>
-        <th width="20%">Producto</th>
-        <th width="20%">Clasificación</th>
-        <th width="20%">Características</th>
-        <th width="20%">Aplicaciones</th>
-        <th width="20%">Equivalente</th>       
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf="submitted && products.length === 0">
-        <td colspan="5">No se encontraron productos.</td>
-      </tr>
-      <tr *ngIf="!submitted">
-        <td colspan="5">Todavía no se ha efectuado ninguna búsqueda.</td>
-      </tr>
-      <tr *ngFor="let product of products">
-        <td>
-         <ins> {{product.name}}</ins><br>
-          <b>Código: </b><a (click)="onGoogleSearchProduct(product.manufacturer.name + ' ' +product.partNumber)">
+<thead>
+  <tr>
+    <th width="20%">Producto</th>
+    <th width="20%">Clasificación</th>
+    <th width="20%">Características</th>
+    <th width="20%">Aplicaciones</th>
+    <th width="20%">Equivalente</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngIf="submitted && products.length === 0">
+    <td colspan="5">No se encontraron productos.</td>
+  </tr>
+  <tr *ngIf="!submitted">
+    <td colspan="5">Todavía no se ha efectuado ninguna búsqueda.</td>
+  </tr>
+  <tr *ngFor="let product of products">
+    <td>
+      <ins> {{product.name}}</ins><br>
+      <b>Código: </b><a (click)="onGoogleSearchProduct(product.manufacturer.name + ' ' +product.partNumber)">
                             {{product.partNumber}}</a><br>
-          <b>Fabricante:</b>{{product.manufacturer.name}}<br> 
-          <b>Marca:</b> {{product.brand.name}}<br>         
-        </td>
-        <td>
-          <b>Tipo:</b> {{product.category.name}}<br>
-           Subgrupo: {{product.subcategory.name}}<br>
-           Grupo: {{product.productTerm.name}}
-        </td>
-        <td>
-           <b>Presentación:</b>{{product.presentationUnit.name}}<br> 
-            Contenido:{{product.contentQty}} {{product.contentUnit.name}}<br>
-          <br>
-        </td>
-        <td>
-          <b>Descripción:</b> {{product.description}} <br> 
-          Notas: {{product.notes}} <br>
-          <br>
-        </td>
-        <td><a (click)="onShowEquivalents(product)">
-          <b>Ver Equivalentes</b><br></a>
-        </td>
-      </tr>
-      <tr *ngIf="products.length !== 0">
-        <td colspan="5"><strong>Productos:</strong> {{products.length}}</td>
-      </tr>
-    </tbody>
-  </table>
+      <b>Fabricante:</b>{{product.manufacturer.name}}<br>
+      <b>Marca:</b> {{product.brand.name}}<br>
+    </td>
+    <td>
+      <b>Tipo:</b> {{product.category.name}}<br> Subgrupo: {{product.subcategory.name}}<br> Grupo: {{product.productTerm.name}}
+    </td>
+    <td>
+      <b>Presentación:</b>{{product.presentationUnit.name}}<br> Contenido:{{product.contentQty}} {{product.contentUnit.name}}<br>
+      <br>
+    </td>
+    <td>
+      <b>Descripción:</b> {{product.description}} <br> Notas: {{product.notes}} <br>
+      <br>
+    </td>
+    <td>
+      <a (click)="onShowEquivalents(product)">
+        <b>Ver Equivalentes</b><br></a>
+    </td>
+  </tr>
+  <tr *ngIf="products.length !== 0">
+    <td colspan="5"><strong>Productos:</strong> {{products.length}}</td>
+  </tr>
+</tbody>
+</table>
 
 </div>
 <modal-window>
   <div [ngSwitch]="componentToShow">
-    <div *ngSwitchCase="'equivalent-editor'"><equivalent-editor [product]="productEquivalent"></equivalent-editor></div>
-    <div *ngSwitchCase="'application-picker'"> <vehicle-model-picker (vehicleModel)="getVehicleModel($event)"></vehicle-model-picker></div>
-  </div>  
+    <div *ngSwitchCase="'equivalent-editor'">
+      <equivalent-editor [product]="productEquivalent"></equivalent-editor>
+    </div>
+    <div *ngSwitchCase="'application-picker'">
+      <vehicle-model-picker (vehicleModel)="getVehicleModel($event)"></vehicle-model-picker>
+    </div>
+  </div>
 </modal-window>
