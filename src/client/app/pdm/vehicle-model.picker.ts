@@ -19,11 +19,13 @@ export class VehicleModelPicker implements OnInit {
   public makeList: string[] = [];
   public modelList: string[] = [];
   public engineList: PairValue[] = [];
+  public vehicleList: VehicleModel[] = [];
 
   public year = -1;
   private make = '';
   private model = '';
   private engineId = 0;
+  private selectedVehicleId = -1;
 
   @Output() vehicleModel = new EventEmitter<VehicleModel>();
 
@@ -65,10 +67,26 @@ export class VehicleModelPicker implements OnInit {
 
   public addAplication(): void {
     this.loadVehicleModel();
-
     this.year = -1;
     this.intializeLists();
   }
+
+  public onRemoveFromVehicleList(vehicle: VehicleModel): void {
+    let index = this.vehicleList.findIndex(x => x.id === vehicle.id);
+
+    if (index !== -1) {
+      this.vehicleList.splice(index, 1);
+    }
+    if ((this.vehicleList.length === 0) || (this.selectedVehicleId === vehicle.id)) {
+      this.vehicleModel.emit();
+    }
+  }
+
+  public onSelectVehicle(vehicle: VehicleModel): void {
+    this.selectedVehicleId = vehicle.id;
+    this.vehicleModel.emit(vehicle);
+  }
+
   // endregion Public methods
 
   // region Private methods
@@ -114,7 +132,7 @@ export class VehicleModelPicker implements OnInit {
   private loadVehicleModel(): void {
     this.pdmService.getVehicleModel(this.engineId)
       .then(x => {
-        this.vehicleModel.emit(x);
+        this.vehicleList.push(x);
       }).catch(err => {
         this.handleErrors(err);
       });
